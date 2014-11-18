@@ -19,6 +19,24 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier! == "tableSegue")
+        {
+            println("tablesegue")
+            let tableViewController : TipsTableViewController = segue.destinationViewController as TipsTableViewController
+            let tipArray = TipsGeneratorArray()
+            tipArray.generateSampleSet()
+            tableViewController.tipsArray = tipArray
+        }
+        else
+        {
+            let collectionController = segue.destinationViewController as TipsCollectionViewController
+            let tipArray = TipsGeneratorArray()
+            tipArray.generateSampleSet()
+            collectionController.tipsArray = tipArray
+        }
+    }
 
 
 }
